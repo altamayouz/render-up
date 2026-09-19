@@ -2,18 +2,17 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// الرابط الأصلي من متغير البيئة (إن وُجد)
-const MAIN_URL = process.env.MAIN_URL;
-// الرابط الجديد الذي تريد إضافته
-const HEALTH_URL = 'https://gpsfirst.onrender.com/dashboard';
+// الرابطان المراد فحصهما
+const URL_TELEBOT = 'https://telebot-0ubm.onrender.com';
+const URL_GPSFIRST = 'https://gpsfirst.onrender.com/dashboard';
 
-// نقطة فحص بسيطة
+// نقطة فحص بسيطة للسيرفر نفسه
 app.get('/', (req, res) => res.send('Guard is awake'));
 
 app.listen(PORT, () => {
   console.log(`Guard server running on port ${PORT}`);
-  if (MAIN_URL) console.log(`Pinging MAIN_URL: ${MAIN_URL}`);
-  console.log(`Pinging HEALTH_URL: ${HEALTH_URL}`);
+  console.log(`Pinging: ${URL_TELEBOT}`);
+  console.log(`Pinging: ${URL_GPSFIRST}`);
 });
 
 // دالة ترسل طلباً واحداً إلى رابط معين وتسجل النتيجة
@@ -23,10 +22,10 @@ const pingUrl = (url, label) => {
     .catch(err => console.error(`[${label}] failed: ${err.message}`));
 };
 
-// دالة الـ ping لكلا الرابطين
+// دالة الـ ping للرابطين
 const pingBoth = () => {
-  if (MAIN_URL) pingUrl(MAIN_URL, 'MAIN');
-  pingUrl(HEALTH_URL, 'HEALTH');
+  pingUrl(URL_TELEBOT, 'TELEBOT');
+  pingUrl(URL_GPSFIRST, 'GPSFIRST');
 };
 
 // أول تنفيذ فوري
