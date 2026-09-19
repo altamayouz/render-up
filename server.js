@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 // الرابط الأصلي من متغير البيئة (إن وُجد)
 const MAIN_URL = process.env.MAIN_URL;
 // الرابط الجديد الذي تريد إضافته
-const HEALTH_URL = 'https://gemini-bot-xnf2.onrender.com/health';
+const HEALTH_URL = 'https://gpsfirst.onrender.com/dashboard';
 
 // نقطة فحص بسيطة
 app.get('/', (req, res) => res.send('Guard is awake'));
